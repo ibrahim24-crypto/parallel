@@ -84,10 +84,10 @@ html {
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
   }
   50% {
-    box-shadow: 0 0 40px rgba(249, 115, 22, 0.6);
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
   }
 }
 
@@ -115,6 +115,15 @@ html {
   }
   100% {
     transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+@keyframes navGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
   }
 }
 
@@ -171,11 +180,11 @@ html {
 
 .hover-lift:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(249, 115, 22, 0.2);
+  box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -193,7 +202,7 @@ html {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(34, 197, 94, 0.1) 0%, transparent 70%);
   pointer-events: none;
 }
 
