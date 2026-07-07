@@ -633,7 +633,7 @@ export default function Home() {
       {scrollY > 300 && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold hover:shadow-lg hover:shadow-orange-500/50 transition duration-300 transform hover:scale-110 z-40 animate-fade-in-up"
+          className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold hover:shadow-lg hover:shadow-green-500/50 transition duration-300 transform hover:scale-110 z-40 animate-fade-in-up"
         >
           ↑
         </button>
