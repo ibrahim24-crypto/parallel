@@ -253,6 +253,48 @@ export default function Home() {
       </section>
 
 
+      {/* Footer */}
+      <footer className="bg-black/80 border-t border-orange-600/30 py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            <div>
+              <div className="text-orange-500 font-black text-2xl mb-4 flex items-center gap-3">
+                <div className="w-8 h-8 bg-orange-500 rounded-2xl animate-pulse"></div>
+                PARALLEL
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">Advanced manufacturing solutions for the future.</p>
+            </div>
+            <div>
+              <h4 className="font-black mb-6 uppercase tracking-widest text-sm text-orange-400">Services</h4>
+              <ul className="space-y-3 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-orange-400 transition duration-300 transform hover:translate-x-1 inline-block">3D Printing</a></li>
+                <li><a href="#" className="hover:text-orange-400 transition duration-300 transform hover:translate-x-1 inline-block">Laser Cutting</a></li>
+                <li><a href="#" className="hover:text-orange-400 transition duration-300 transform hover:translate-x-1 inline-block">CNC Machining</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-black mb-6 uppercase tracking-widest text-sm text-orange-400">Company</h4>
+              <ul className="space-y-3 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-orange-400 transition duration-300 transform hover:translate-x-1 inline-block">About</a></li>
+                <li><a href="#" className="hover:text-orange-400 transition duration-300 transform hover:translate-x-1 inline-block">Portfolio</a></li>
+                <li><a href="#" className="hover:text-orange-400 transition duration-300 transform hover:translate-x-1 inline-block">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-black mb-6 uppercase tracking-widest text-sm text-orange-400">Social</h4>
+              <ul className="space-y-3 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-orange-400 transition duration-300 transform hover:translate-x-1 inline-block">Twitter</a></li>
+                <li><a href="#" className="hover:text-orange-400 transition duration-300 transform hover:translate-x-1 inline-block">LinkedIn</a></li>
+                <li><a href="#" className="hover:text-orange-400 transition duration-300 transform hover:translate-x-1 inline-block">Instagram</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-orange-600/30 pt-8 text-center text-gray-500 text-sm">
+            <p>© 2024 Parallel Manufacturing. Precision. Speed. Excellence.</p>
+          </div>
+        </div>
+      </footer>
+
       {/* Scroll to top button */}
       {scrollY > 300 && (
         <button

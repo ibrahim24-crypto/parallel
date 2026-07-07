@@ -11,6 +11,16 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Hide scrollbar but keep scrolling */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 #__next {
   width: 100%;
   height: 100%;
