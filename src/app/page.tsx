@@ -43,12 +43,12 @@ export default function Home() {
             Advanced manufacturing solutions for <span className="text-orange-400 font-semibold">3D Printing</span>, <span className="text-orange-400 font-semibold">Laser Cutting</span> & <span className="text-orange-400 font-semibold">CNC Machining</span>
           </p>
           
-          <div className="flex gap-4 justify-center pt-8 flex-wrap">
-            <button className="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-bold text-lg overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/50">
+          <div className="flex gap-4 justify-center pt-8 flex-wrap animate-fade-in-up stagger-3">
+            <button className="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-bold text-lg overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/50 active:scale-95">
               <span className="relative z-10">Get Started</span>
               <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-700 opacity-0 group-hover:opacity-100 transition duration-300"></div>
             </button>
-            <button className="px-8 py-4 border-2 border-orange-500 rounded-xl font-bold text-lg hover:bg-orange-500/10 transition duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-orange-500/30">
+            <button className="px-8 py-4 border-2 border-orange-500 rounded-xl font-bold text-lg hover:bg-orange-500/10 transition duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-orange-500/30 active:scale-95">
               Learn More
             </button>
           </div>
@@ -220,7 +220,7 @@ export default function Home() {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up stagger-2">
-            <a href="mailto:hello@paralleltech.com" className="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-bold text-lg overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/50">
+            <a href="mailto:ibrahimezzine09@gmail.com" className="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-bold text-lg overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/50 active:scale-95">
               <span className="relative z-10">Get In Touch</span>
               <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-700 opacity-0 group-hover:opacity-100 transition duration-300"></div>
             </a>
@@ -232,8 +232,8 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-6 pt-12">
             {[
               { label: 'Phone', value: '+212 5XX XXX XXX', icon: '📞' },
-              { label: 'Email', value: 'hello@parallel.tech', icon: '✉️' },
-              { label: 'Location', value: 'Marrakech, Morocco', icon: '📍', link: 'https://www.google.com/maps/place/Parallel+Builds/@31.6783396,-8.0429837' }
+              { label: 'Email', value: 'ibrahimezzine09@gmail.com', icon: '✉️' },
+              { label: 'Location', value: 'Marrakech, Morocco', icon: '📍', link: 'https://www.google.com/maps/place/Parallel+Builds/@31.6811196,-8.0487584,17z/data=!3m1!4b1!4m17!1m10!4m9!1m6!1m2!1s0xdafedff2ed4564b:0xc15b8cfe332b2c31!2sParallel+Builds,+N+31,+Lot+Mabrour+Fatna,+31+secteur+017967,+Marrakech+40000!2m2!1d-8.0438875!2d31.6811197!1m0!3e2!3m5!1s0xdafedff2ed4564b:0xc15b8cfe332b2c31!8m2!3d31.6811197!4d-8.0438875!16s%2Fg%2F11nc5s3tp8?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D' }
             ].map((contact, i) => (
               <a 
                 key={i}
