@@ -24,6 +24,71 @@ export default function Home() {
     { label: 'Contact', href: '#contact' }
   ]
 
+  const [activeLink, setActiveLink] = useState('home')
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [filter, setFilter] = useState('All')
+  const [modalOpen, setModalOpen] = useState(false)
+  const [toast, setToast] = useState('')
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
+
+  const projects = [
+    { title: 'Custom Prototype', category: '3D Printing', image: '🔩' },
+    { title: 'Metal Signage', category: 'Laser Cutting', image: '📋' },
+    { title: 'Precision Parts', category: 'CNC Machining', image: '🛠️' },
+    { title: 'Art Installation', category: 'Laser Cutting', image: '🎨' },
+    { title: 'Production Run', category: '3D Printing', image: '📦' },
+    { title: 'Industrial Fixture', category: 'CNC Machining', image: '📐' },
+  ]
+
+  const filteredProjects = projects.filter(p => filter === 'All' ? true : p.category === filter)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+      setIsScrolled(window.scrollY > 50)
+
+      // update active section
+      const sections = ['home','services','portfolio','about','contact']
+      for (const id of sections) {
+        const el = document.getElementById(id)
+        if (el) {
+          const rect = el.getBoundingClientRect()
+          if (rect.top <= 120 && rect.bottom > 120) {
+            setActiveLink(id)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const handleNavClick = (href: string) => {
+    setMobileOpen(false)
+    const id = href.replace('#','')
+    const el = document.getElementById(id)
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  const openSchedule = () => { setModalOpen(true) }
+  const closeSchedule = () => { setModalOpen(false) }
+
+  const submitForm = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!form.name || !form.email) {
+      setToast('Please enter name and email')
+      setTimeout(() => setToast(''), 2500)
+      return
+    }
+    // ponytail: no backend — simulate success
+    setToast('Request sent — we\'ll reach out!')
+    setForm({ name: '', email: '', message: '' })
+    setModalOpen(false)
+    setTimeout(() => setToast(''), 3000)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-950 via-black to-neutral-900 text-white overflow-x-hidden">
       {/* Animated Top Navbar */}
@@ -45,18 +110,33 @@ export default function Home() {
               <a
                 key={i}
                 href={link.href}
-                className="relative text-gray-300 hover:text-green-400 transition duration-300 text-sm font-semibold uppercase tracking-wide group"
-              >
+                onClick={(e) => { e.preventDefault(); handleNavClick(link.href) }}
+                className={`relative transition duration-300 text-sm font-semibold uppercase tracking-wide group ${activeLink === link.href.replace('#','') ? 'text-white' : 'text-gray-300 hover:text-green-400'}`}>
                 {link.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-green-400 to-orange-500 group-hover:w-full transition-all duration-300"></span>
               </a>
             ))}
           </div>
 
-          <button className="group relative px-6 py-2 bg-gradient-to-r from-green-500 to-orange-500 rounded-lg font-bold text-sm text-white overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/50 active:scale-95">
-            <span className="relative z-10">Get Started</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-orange-600 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-          </button>
+          <div className="flex items-center gap-4">
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2 rounded-md bg-black/30 hover:bg-black/40 transition">
+              <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+            </button>
+
+            <button onClick={openSchedule} className="group relative px-4 py-2 bg-gradient-to-r from-green-500 to-orange-500 rounded-lg font-bold text-sm text-white overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95">
+              Schedule Demo
+            </button>
+          </div>
+
+          {mobileOpen && (
+            <div className="absolute top-full left-0 right-0 bg-black/90 backdrop-blur-md md:hidden px-6 py-4 z-40">
+              <div className="flex flex-col gap-3">
+                {navLinks.map((link, i) => (
+                  <a key={i} href={link.href} onClick={(e) => { e.preventDefault(); handleNavClick(link.href) }} className="text-white py-2 border-b border-white/5">{link.label}</a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -169,15 +249,16 @@ export default function Home() {
             Featured Projects
           </h2>
           
+          <div className="flex justify-center gap-3 mb-8">
+            {['All','3D Printing','Laser Cutting','CNC Machining'].map((f) => (
+              <button key={f} onClick={() => setFilter(f)} className={`px-4 py-2 rounded-full text-sm font-semibold transition ${filter === f ? 'bg-gradient-to-r from-green-500 to-orange-500 text-white shadow-lg' : 'bg-black/30 text-gray-300 hover:bg-black/40'}`}>
+                {f}
+              </button>
+            ))}
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: 'Custom Prototype', category: '3D Printing', image: '🔩' },
-              { title: 'Metal Signage', category: 'Laser Cutting', image: '📋' },
-              { title: 'Precision Parts', category: 'CNC Machining', image: '🛠️' },
-              { title: 'Art Installation', category: 'Laser Cutting', image: '🎨' },
-              { title: 'Production Run', category: '3D Printing', image: '📦' },
-              { title: 'Industrial Fixture', category: 'CNC Machining', image: '📐' },
-            ].map((project, i) => (
+            {filteredProjects.map((project, i) => (
               <div
                 key={i}
                 className="group bg-gradient-to-br from-green-500/15 to-orange-900/20 border border-green-500/30 rounded-2xl overflow-hidden hover:border-orange-400 transition duration-500 hover-lift animate-scale-in stagger-1 backdrop-blur-sm"
@@ -295,6 +376,31 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Schedule Modal */}
+      {modalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/60" onClick={closeSchedule}></div>
+          <form onSubmit={submitForm} className="relative bg-neutral-900 p-6 rounded-2xl w-full max-w-md z-10">
+            <h3 className="text-2xl font-black mb-4">Schedule Demo</h3>
+            <label className="text-sm text-gray-300">Name</label>
+            <input value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} className="w-full p-3 rounded-md bg-black/20 mb-3" />
+            <label className="text-sm text-gray-300">Email</label>
+            <input value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} className="w-full p-3 rounded-md bg-black/20 mb-3" />
+            <label className="text-sm text-gray-300">Details</label>
+            <textarea value={form.message} onChange={(e) => setForm({...form, message: e.target.value})} className="w-full p-3 rounded-md bg-black/20 mb-3" rows={4} />
+            <div className="flex gap-3 justify-end mt-4">
+              <button type="button" onClick={closeSchedule} className="px-4 py-2 bg-black/20 rounded">Cancel</button>
+              <button type="submit" className="px-4 py-2 bg-gradient-to-r from-green-500 to-orange-500 text-white rounded">Send</button>
+            </div>
+          </form>
+        </div>
+      )}
+
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-6 right-6 z-50 bg-black/80 text-white px-4 py-2 rounded">{toast}</div>
+      )}
 
       {/* Footer */}
       <footer className="bg-black/80 border-t border-green-600/30 py-16 px-6">
